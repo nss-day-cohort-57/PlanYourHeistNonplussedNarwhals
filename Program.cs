@@ -52,32 +52,41 @@ namespace ch18PlanYourHeist
 
             Console.WriteLine($"There are {TeamListLength} members in your team.");
 
-            NewTeam.TeamMemberInfo();
+            // NewTeam.TeamMemberInfo();
 
-            int BankDifficultyLevel = 100;
+            Console.Write("Enter the number of trials you would like to run: ");
+
+            int TrialRuns = int.Parse(Console.ReadLine());
 
             int TeamSkillLevel = 0;
-
-            int Luck = new Random().Next(-10, 10);
-
-            BankDifficultyLevel += Luck;
 
             foreach (TeamMember member in NewTeam.TeamList)
             {
                 TeamSkillLevel += member.SkillLevel;
             }
 
+            int BankDifficultyLevel = 100;
 
-            Console.WriteLine($"The team's combined skill level in {TeamSkillLevel}. \nThe bank has a difficulty level of {BankDifficultyLevel}.");
+            for (int i = 0; i < TrialRuns; i++)
+            {
 
-            if (TeamSkillLevel >= BankDifficultyLevel)
-            {
-                Console.WriteLine("Success!");
+                int Luck = new Random().Next(-10, 10);
+
+                BankDifficultyLevel += Luck;
+
+                Console.WriteLine($"\nThe team's combined skill level is {TeamSkillLevel}. \nThe bank has a difficulty level of {BankDifficultyLevel}.");
+
+                if (TeamSkillLevel >= BankDifficultyLevel)
+                {
+                    Console.WriteLine("Success!");
+                }
+                else
+                {
+                    Console.WriteLine("You Failed! Git Gud..");
+                }
+
             }
-            else
-            {
-                Console.WriteLine("You Failed! Git Gud..");
-            }
+
 
         }
     }
