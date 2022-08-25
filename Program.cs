@@ -75,7 +75,7 @@ namespace ch18PlanYourHeist
             for (int i = 0; i < TrialRuns; i++)
             {
 
-                int Luck = new Random().Next(-10, 10);
+                int Luck = new Random().Next(-10, 11);
 
                 BankDifficultyLevel += Luck;
 
