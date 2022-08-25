@@ -30,7 +30,7 @@ namespace ch18PlanYourHeist
 
                     TeamMember newTeamMember = new TeamMember(teamMemberName, teamMemberSkillLevel, teamMemberCourageFactor);
 
-                    newTeamMember.DisplayInfo();
+                    // newTeamMember.DisplayInfo();
 
                     NewTeamList.Add(newTeamMember);
 
@@ -53,6 +53,24 @@ namespace ch18PlanYourHeist
             Console.WriteLine($"There are {TeamListLength} members in your team.");
 
             NewTeam.TeamMemberInfo();
+
+            int BankDifficultyLevel = 100;
+
+            int TeamSkillLevel = 0;
+
+            foreach (TeamMember member in NewTeam.TeamList)
+            {
+                TeamSkillLevel += member.SkillLevel;
+            }
+
+            if (TeamSkillLevel >= BankDifficultyLevel)
+            {
+                Console.WriteLine("Success!");
+            }
+            else
+            {
+                Console.WriteLine("You Failed! Git Gud..");
+            }
 
         }
     }

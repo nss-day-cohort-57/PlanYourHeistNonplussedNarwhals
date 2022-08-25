@@ -10,9 +10,9 @@ namespace ch18PlanYourHeist
             SkillLevel = skillLevel;
             CourageFactor = courageFactor;
         }
-        string Name { get; set; }
-        int SkillLevel { get; set; }
-        double CourageFactor { get; set; }
+        public string Name { get; set; }
+        public int SkillLevel { get; set; }
+        public double CourageFactor { get; set; }
 
         public void DisplayInfo()
         {
