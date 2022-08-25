@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ch18PlanYourHeist
 {
@@ -8,21 +9,51 @@ namespace ch18PlanYourHeist
         {
             Console.WriteLine("Plan Your Heist!");
 
-            Console.Write("Enter a team member's name: ");
+            List<TeamMember> NewTeamList = new List<TeamMember>();
 
-            string teamMember1Name = Console.ReadLine();
+            void BuildTeam()
+            {
 
-            Console.Write($"Enter {teamMember1Name}'s skill level: ");
+                Console.Write("Enter a team member's name: ");
 
-            int teamMember1SkillLevel = int.Parse(Console.ReadLine());
+                string teamMemberName = Console.ReadLine();
 
-            Console.Write($"Enter {teamMember1Name}'s courage factor (0.0 - 2.0): ");
+                if (teamMemberName != "")
+                {
+                    Console.Write($"Enter {teamMemberName}'s skill level: ");
 
-            double teamMember1CourageFactor = double.Parse(Console.ReadLine());
+                    int teamMemberSkillLevel = int.Parse(Console.ReadLine());
 
-            TeamMember SafeCracker = new TeamMember(teamMember1Name, teamMember1SkillLevel, teamMember1CourageFactor);
+                    Console.Write($"Enter {teamMemberName}'s courage factor (0.0 - 2.0): ");
 
-            SafeCracker.DisplayInfo();
+                    double teamMemberCourageFactor = double.Parse(Console.ReadLine());
+
+                    TeamMember newTeamMember = new TeamMember(teamMemberName, teamMemberSkillLevel, teamMemberCourageFactor);
+
+                    newTeamMember.DisplayInfo();
+
+                    NewTeamList.Add(newTeamMember);
+
+                    BuildTeam();
+
+                }
+
+            }
+
+            BuildTeam();
+
+            Console.Write("Enter the name of your team: ");
+
+            string NewTeamName = Console.ReadLine();
+
+            Team NewTeam = new Team(NewTeamName, NewTeamList);
+
+            int TeamListLength = NewTeamList.Count;
+
+            Console.WriteLine($"There are {TeamListLength} members in your team.");
+
+            NewTeam.TeamMemberInfo();
+
         }
     }
 }
