@@ -9,22 +9,26 @@ namespace ch18PlanYourHeist
         {
             Console.WriteLine("Plan Your Heist!");
 
+            Console.Write("\nEnter your Heist Locale's difficulty: ");
+
+            int BankDifficultyLevel = int.Parse(Console.ReadLine());
+
             List<TeamMember> NewTeamList = new List<TeamMember>();
 
             void BuildTeam()
             {
 
-                Console.Write("Enter a team member's name: ");
+                Console.Write("\nEnter a team member's name: ");
 
                 string teamMemberName = Console.ReadLine();
 
                 if (teamMemberName != "")
                 {
-                    Console.Write($"Enter {teamMemberName}'s skill level: ");
+                    Console.Write($"\nEnter {teamMemberName}'s skill level: ");
 
                     int teamMemberSkillLevel = int.Parse(Console.ReadLine());
 
-                    Console.Write($"Enter {teamMemberName}'s courage factor (0.0 - 2.0): ");
+                    Console.Write($"\nEnter {teamMemberName}'s courage factor (0.0 - 2.0): ");
 
                     double teamMemberCourageFactor = double.Parse(Console.ReadLine());
 
@@ -42,7 +46,7 @@ namespace ch18PlanYourHeist
 
             BuildTeam();
 
-            Console.Write("Enter the name of your team: ");
+            Console.Write("\nEnter the name of your team: ");
 
             string NewTeamName = Console.ReadLine();
 
@@ -50,11 +54,11 @@ namespace ch18PlanYourHeist
 
             int TeamListLength = NewTeamList.Count;
 
-            Console.WriteLine($"There are {TeamListLength} members in your team.");
+            Console.WriteLine($"\nThere are {TeamListLength} members in your team.");
 
             // NewTeam.TeamMemberInfo();
 
-            Console.Write("Enter the number of trials you would like to run: ");
+            Console.Write("\nEnter the number of trials you would like to run: ");
 
             int TrialRuns = int.Parse(Console.ReadLine());
 
@@ -65,7 +69,8 @@ namespace ch18PlanYourHeist
                 TeamSkillLevel += member.SkillLevel;
             }
 
-            int BankDifficultyLevel = 100;
+            int FailedRuns = 0;
+            int SuccesfulRuns = 0;
 
             for (int i = 0; i < TrialRuns; i++)
             {
@@ -74,19 +79,20 @@ namespace ch18PlanYourHeist
 
                 BankDifficultyLevel += Luck;
 
-                Console.WriteLine($"\nThe team's combined skill level is {TeamSkillLevel}. \nThe bank has a difficulty level of {BankDifficultyLevel}.");
+                // Console.WriteLine($"\nThe team's combined skill level is {TeamSkillLevel}. \nThe bank has a difficulty level of {BankDifficultyLevel}.");
 
                 if (TeamSkillLevel >= BankDifficultyLevel)
                 {
-                    Console.WriteLine("Success!");
+                    SuccesfulRuns++;
                 }
                 else
                 {
-                    Console.WriteLine("You Failed! Git Gud..");
+                    FailedRuns++;
                 }
 
             }
 
+            Console.WriteLine($"\nAccording to the simulation, you've succeeded {SuccesfulRuns} times and failed {FailedRuns} times.");
 
         }
     }
