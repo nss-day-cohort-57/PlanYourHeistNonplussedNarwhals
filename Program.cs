@@ -58,10 +58,17 @@ namespace ch18PlanYourHeist
 
             int TeamSkillLevel = 0;
 
+            int Luck = new Random().Next(-10, 10);
+
+            BankDifficultyLevel += Luck;
+
             foreach (TeamMember member in NewTeam.TeamList)
             {
                 TeamSkillLevel += member.SkillLevel;
             }
+
+
+            Console.WriteLine($"The team's combined skill level in {TeamSkillLevel}. \nThe bank has a difficulty level of {BankDifficultyLevel}.");
 
             if (TeamSkillLevel >= BankDifficultyLevel)
             {
